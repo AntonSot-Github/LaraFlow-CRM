@@ -44,21 +44,36 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-public function login(LoginUserRequest $request)
-{
-    // 1. Валидация входных данных в LoginUserRequest
-    // 2. Попытка авторизации
-    if (Auth::attempt($request->validated())) {
-        // 3. Защита от фиксации сессии
-        $request->session()->regenerate();
+    public function login(LoginUserRequest $request)
+    {
+        // 1. Валидация входных данных в LoginUserRequest
+        // 2. Попытка авторизации
+        if (Auth::attempt($request->validated())) {
+            // 3. Защита от фиксации сессии
+            $request->session()->regenerate();
 
-        // 4. Успешный вход → редирект
-        return redirect('/dashboard');
+            // 4. Успешный вход → редирект
+            return redirect('/dashboard');
+        }
+
+        // 5. Ошибка → назад с сообщением
+        return back()->withErrors([
+            'email' => 'Неверный email или пароль',
+        ]);
     }
 
-    // 5. Ошибка → назад с сообщением
-    return back()->withErrors([
-        'email' => 'Неверный email или пароль',
-    ]);
-}
+    public function logout(Request $request)
+    {
+        //Logout user(Delete user from session)
+        Auth::logout();
+
+        //Destroy current session to protect against reuse
+        $request->session()->invalidate();
+
+        //Update CSRF-token
+        $request->session()->regenerateToken();
+
+        //Redirect
+        return redirect('/');
+    }
 }

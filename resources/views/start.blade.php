@@ -7,9 +7,26 @@
     <title>LaraFlow: start-page</title>
 </head>
 <body>
-    <div class="container">
-        <h1 >Start Page</h1>
-    </div>
+    <main>
+        <div class="container w-50">
+            <h1>Start Page</h1>
+
+            <a href="{{ route('login') }}">Login</a>
+
+            <div style="padding-top: 1rem">
+                <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                    <button type="submit">Logout</button>
+                </form>
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+
 
 </body>
 </html>
