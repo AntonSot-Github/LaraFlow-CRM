@@ -20,3 +20,10 @@ Route::middleware('auth')->group(function () {
 Route::post('/logout', [AuthController::class, 'logout'])
     ->middleware('auth')
     ->name('logout');
+
+//Admin panel
+Route::middleware(['auth', 'role:admin'])->group(function() {
+    Route::get('/admin', function(){
+        return 'Admin panel';
+    });
+});
