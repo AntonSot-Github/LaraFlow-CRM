@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\PageController;
@@ -23,7 +24,5 @@ Route::post('/logout', [AuthController::class, 'logout'])
 
 //Admin panel
 Route::middleware(['auth', 'role:admin'])->group(function() {
-    Route::get('/admin', function(){
-        return 'Admin panel';
-    });
+    Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 });
