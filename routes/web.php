@@ -28,9 +28,24 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 });
 
-//Client page for authorized users only
+//Client page for authorized user only
 Route::middleware('auth')->group(function () {
+
+    //Show page
     Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
+
+    //Create client form-page
+    Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
+
+    //Save client to DB
+    Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
+
+    //Edit client data
+    Route::get('clients/{client}/edit', [ClientController::class, 'edit'])->name('clients.edit');
+
+    //Save edition data
+    Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
+
 });
 
 

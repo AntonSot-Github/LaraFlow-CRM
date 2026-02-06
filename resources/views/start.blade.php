@@ -1,32 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>LaraFlow: start-page</title>
-</head>
-<body>
-    <main>
-        <div class="container w-50">
-            <h1>Start Page</h1>
 
-            <a href="{{ route('login') }}">Login</a>
+@extends('layouts.app')
 
-            <div style="padding-top: 1rem">
-                <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                    <button type="submit">Logout</button>
-                </form>
-            </div>
+@section('title', 'Start page')
 
-        </div>
-
-
-    </main>
+@section('content')
+    @if (@isset($user))
+        <p>{{ $user->name }}</p>
+        <a href="{{ route('clients.index') }}">Clients</a>
+    @else
+        <a href="{{ route('login') }}">Login</a>
+    @endif
 
 
 
-
-</body>
-</html>
+    <div style="padding-top: 1rem">
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+@endsection
