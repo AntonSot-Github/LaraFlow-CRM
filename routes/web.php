@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +27,10 @@ Route::post('/logout', [AuthController::class, 'logout'])
 Route::middleware(['auth', 'role:admin'])->group(function() {
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 });
+
+//Client page for authorized users only
+Route::middleware('auth')->group(function () {
+    Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
+});
+
+
