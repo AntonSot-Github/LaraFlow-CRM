@@ -16,6 +16,7 @@
         <h1 class="text-center">@yield('title', 'Title')</h1>
     </header>
     <main class="d-flex flex-column container w-50">
+        @include('components.alert')
         @yield('content')
     </main>
 </body>

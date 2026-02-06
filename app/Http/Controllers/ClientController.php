@@ -42,6 +42,13 @@ class ClientController extends Controller
     public function update(UpdateClientRequest $request, Client $client)
     {
         $client->update($request->validated());
-        return redirect()->route('clients.index');
+        return redirect()->route('clients.index')->with('success', 'Client\'s data was changed');
+    }
+
+    public function destroy(Client $client)
+    {
+        $client->delete();
+
+        return redirect()->route('clients.index')->with('success', "$client->name was deleted from DataBase");
     }
 }

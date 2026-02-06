@@ -31,21 +31,27 @@ Route::middleware(['auth', 'role:admin'])->group(function() {
 //Client page for authorized user only
 Route::middleware('auth')->group(function () {
 
-    //Show page
-    Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
+    Route::prefix('clients')->group(function(){
+        //Show page
+        Route::get('/', [ClientController::class, 'index'])->name('clients.index');
 
-    //Create client form-page
-    Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
+        //Create client form-page
+        Route::get('/create', [ClientController::class, 'create'])->name('clients.create');
 
-    //Save client to DB
-    Route::post('/clients', [ClientController::class, 'store'])->name('clients.store');
+        //Save client to DB
+        Route::post('/', [ClientController::class, 'store'])->name('clients.store');
 
-    //Edit client data
-    Route::get('clients/{client}/edit', [ClientController::class, 'edit'])->name('clients.edit');
+        //Edit client data
+        Route::get('/{client}/edit', [ClientController::class, 'edit'])->name('clients.edit');
 
-    //Save edition data
-    Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
+        //Save edition data
+        Route::put('/{client}', [ClientController::class, 'update'])->name('clients.update');
 
+        //Delete client from DB
+        Route::delete('/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
+    });
+    
+    
 });
 
 
