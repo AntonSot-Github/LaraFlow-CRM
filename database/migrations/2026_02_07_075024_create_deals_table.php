@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('client_id')->constrained()->cascadeOnDelete();
             $table->string('title');
-            $table->decimal('amunt', 10, 2)->nullable();
+            $table->decimal('amount', 10, 2)->nullable();
             $table->string('status')->default('new');
             $table->timestamps();
         });

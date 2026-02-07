@@ -25,6 +25,9 @@
 
                             <button type="submit">Delete</button>
                         </form>
+                        <a href="{{ route('clients.deals.index', $client) }}">
+                            Deals
+                        </a>
                     </li>
                 @endforeach
             </ul>

@@ -14,7 +14,7 @@ class Client extends Model
         'phone',
     ];
 
-    public function dials(): HasMany
+    public function deals(): HasMany
     {
         return $this->hasMany(Deal::class);
     }
