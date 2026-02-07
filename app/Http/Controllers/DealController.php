@@ -31,6 +31,24 @@ class DealController extends Controller
 
         $client->deals()->create($data);
 
-        return redirect()->route('clients.deals.index', $client);
+        return redirect()->route('clients.deals.index', $client)->with('success', 'Deal was created succesfully');
+    }
+
+    public function edit(Client $client, Deal $deal)
+    {
+        return view('deals.edit', compact('client', 'deal'));
+    }
+
+    public function update(Request $request, Client $client, Deal $deal)
+    {
+        $data = $request->validate([
+            'title'  => 'required|string|max:255',
+            'amount' => 'nullable|numeric|min:0',
+            'status' => 'required|string',
+        ]);
+
+        $deal->update($data);
+
+        return redirect()->route('clients.deals.index', $client)->with('success', "Deal '$deal->title' was changed succesfully");
     }
 }

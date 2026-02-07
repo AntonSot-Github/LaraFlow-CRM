@@ -29,7 +29,7 @@ class ClientController extends Controller
     {
         Client::create($request->validated());
 
-        return redirect()->route('clients.index');
+        return redirect()->route('clients.index')->with('success', "$request->name's data was saved");
     }
 
     //Edit client data

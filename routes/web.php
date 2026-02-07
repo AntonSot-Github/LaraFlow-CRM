@@ -51,14 +51,22 @@ Route::middleware('auth')->group(function () {
         //Delete client from DB
         Route::delete('/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
 
+        //Return to deals list page
         Route::get('/{client}/deals', [DealController::class, 'index'])->name('clients.deals.index');
 
+        //Form page for a new deal create
         Route::get('/{client}/deals/create', [DealController::class, 'create'])->name('clients.deals.create');
 
+        //Saving new deal to DB
         Route::post('{client}/deals', [DealController::class, 'store'])->name('clients.deals.store');
+
+        //Edition choosen deal
+        Route::get('/{client}/deals/{deal}/update', [DealController::class, 'edit'])->name('client.deals.edit');
+
+        //Save changed current deal
+        Route::put('/{client}/deals/{deal}', [DealController::class, 'update'])->name('client.deals.update');
     });
-    
-    
+
 });
 
 
