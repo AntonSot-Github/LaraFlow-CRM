@@ -52,6 +52,10 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
 
         Route::get('/{client}/deals', [DealController::class, 'index'])->name('clients.deals.index');
+
+        Route::get('/{client}/deals/create', [DealController::class, 'create'])->name('clients.deals.create');
+
+        Route::post('{client}/deals', [DealController::class, 'store'])->name('clients.deals.store');
     });
     
     

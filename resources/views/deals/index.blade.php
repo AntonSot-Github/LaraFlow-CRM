@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-{{-- @section('title', "Deals for client: {{ $client->name }}") --}}
+@section('title', "Deals for client: $client->name")
 
 @section('content')
     @if ($deals->isEmpty())
@@ -23,6 +23,8 @@
         </table>
     @endif
 
+    <a href="{{ route('clients.deals.create', $client) }}"> + Add deal </a>
+    <br>
     <a href="{{ route('clients.index') }}">← Back to clients</a>
 
 @endsection
