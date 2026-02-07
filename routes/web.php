@@ -65,6 +65,10 @@ Route::middleware('auth')->group(function () {
 
         //Save changed current deal
         Route::put('/{client}/deals/{deal}', [DealController::class, 'update'])->name('client.deals.update');
+
+        //Delete current deal
+        Route::delete('/{client}/deals/{deal}', [DealController::class, 'destroy'])->name('clients.deals.destroy');
+        
     });
 
 });

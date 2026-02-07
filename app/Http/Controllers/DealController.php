@@ -51,4 +51,11 @@ class DealController extends Controller
 
         return redirect()->route('clients.deals.index', $client)->with('success', "Deal '$deal->title' was changed succesfully");
     }
+
+    public function destroy(Client $client, Deal $deal)
+    {
+        $deal->delete();
+
+        return redirect()->route('clients.deals.index', $client)->with('success', "Deal '$deal->title' has deleted");
+    }
 }

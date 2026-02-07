@@ -12,6 +12,7 @@
                 <th>Amount</th>
                 <th>Status</th>
                 <th>Edition</th>
+                <th>Delete</th>
             </tr>
 
             @foreach ($deals as $deal)
@@ -19,7 +20,16 @@
                     <td>{{ $deal->title }}</td>
                     <td>{{ $deal->amount ?? '—' }}</td>
                     <td>{{ $deal->status }}</td>
-                    <td><a href="{{ route('client.deals.edit', [$client, $deal])}}">Edit</a></td>
+                    <td><a href="{{ route('client.deals.edit', [$client, $deal]) }}">Edit</a></td>
+                    <td>
+                        <form method="POST" action="{{ route('clients.deals.destroy', [$client, $deal]) }}"
+                            style="display:inline" onsubmit="return confirm('Delete this deal?')">
+                            @csrf
+                            @method('DELETE')
+
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </table>
