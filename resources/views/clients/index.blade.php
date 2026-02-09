@@ -35,4 +35,5 @@
         <a href="{{ route('clients.create') }}">Add new client</a><br>
         <a href="{{ route('start') }}">Back to the start page</a>
     </div>
+    <x-comments :commentable="$client" />
 @endsection

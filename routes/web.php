@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\DealController;
@@ -70,7 +71,7 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{client}/deals/{deal}', [DealController::class, 'destroy'])->name('clients.deals.destroy');
         
     });
-
 });
 
+Route::post('/comments', [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
 

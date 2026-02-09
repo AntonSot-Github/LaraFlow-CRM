@@ -38,5 +38,5 @@
     <a href="{{ route('clients.deals.create', $client) }}"> + Add deal </a>
     <br>
     <a href="{{ route('clients.index') }}">← Back to clients</a>
-
+    <x-comments :commentable="$deal" />
 @endsection
