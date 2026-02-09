@@ -24,4 +24,9 @@ class Deal extends Model
     {
         return $this->morphMany(Comment::class, 'commentable');
     }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }

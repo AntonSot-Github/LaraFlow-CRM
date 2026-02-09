@@ -11,7 +11,7 @@
             <ul>
                 @foreach ($clients as $client)
                     <li class="mb-3">
-                        {{ $client->name }}
+                        <a href="{{ route('client.show', $client) }}">{{ $client->name }}</a>
                         @if ($client->email)
                             — {{ $client->email }}
                         @endif
@@ -35,5 +35,5 @@
         <a href="{{ route('clients.create') }}">Add new client</a><br>
         <a href="{{ route('start') }}">Back to the start page</a>
     </div>
-    <x-comments :commentable="$client" />
+    
 @endsection

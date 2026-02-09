@@ -16,6 +16,11 @@ class DealController extends Controller
         return view('deals.index', compact('client', 'deals'));
     }
 
+    public function show(Client $client, Deal $deal)
+    {
+        return view('deals.show', compact('client', 'deal'));
+    }
+
     public function create(Client $client)
     {
         return view('deals.create', compact('client'));

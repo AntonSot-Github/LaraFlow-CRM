@@ -17,7 +17,7 @@
 
             @foreach ($deals as $deal)
                 <tr>
-                    <td>{{ $deal->title }}</td>
+                    <td><a href="{{ route('clients.deal.show', [$client, $deal]) }}">{{ $deal->title }}</a></td>
                     <td>{{ $deal->amount ?? '—' }}</td>
                     <td>{{ $deal->status }}</td>
                     <td><a href="{{ route('client.deals.edit', [$client, $deal]) }}">Edit</a></td>
@@ -38,5 +38,5 @@
     <a href="{{ route('clients.deals.create', $client) }}"> + Add deal </a>
     <br>
     <a href="{{ route('clients.index') }}">← Back to clients</a>
-    <x-comments :commentable="$deal" />
+
 @endsection

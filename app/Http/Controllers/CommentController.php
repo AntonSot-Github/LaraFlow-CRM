@@ -21,7 +21,7 @@ class CommentController extends Controller
 
         $commentable->comments()->create([
             'body' => $data['body'],
-            'user_id' => auth()->id(),
+            'user_id' => auth()->id() ?? null,
         ]);
 
         return back();

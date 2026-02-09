@@ -7,7 +7,9 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\DealController;
+use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Validation\Rules\Can;
 
 Route::get('/', [PageController::class, 'start'])->name('start');
 Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
@@ -52,8 +54,14 @@ Route::middleware('auth')->group(function () {
         //Delete client from DB
         Route::delete('/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
 
+        //Show the client
+        Route::get('/{client}/show', [ClientController::class, 'show'])->name('client.show');
+
         //Return to deals list page
         Route::get('/{client}/deals', [DealController::class, 'index'])->name('clients.deals.index');
+
+        //Show the deal
+        Route::get('/{client}/deal/{deal}', [DealController::class, 'show'])->name('clients.deal.show');
 
         //Form page for a new deal create
         Route::get('/{client}/deals/create', [DealController::class, 'create'])->name('clients.deals.create');
@@ -73,5 +81,10 @@ Route::middleware('auth')->group(function () {
     });
 });
 
+//Save comment
 Route::post('/comments', [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
+
+//Save task
+Route::post('/clients/{client}/deals/{deal}/tasks', [TaskController::class, 'store'])->middleware('auth')->name('task.store');
+
 

@@ -18,6 +18,11 @@ class ClientController extends Controller
         return view('clients.index', compact('clients'));
     }
 
+    public function show(Client $client)
+    {
+        return view('clients.show', compact('client'));
+    }
+
     //Create client
     public function create()
     {
