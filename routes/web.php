@@ -28,14 +28,14 @@ Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout');
 
 //Admin panel
-Route::middleware(['auth', 'role:admin'])->group(function() {
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 });
 
 //Client page for authorized user only
 Route::middleware('auth')->group(function () {
 
-    Route::prefix('clients')->group(function(){
+    Route::prefix('clients')->group(function () {
         //Show page
         Route::get('/', [ClientController::class, 'index'])->name('clients.index');
 
@@ -77,14 +77,17 @@ Route::middleware('auth')->group(function () {
 
         //Delete current deal
         Route::delete('/{client}/deals/{deal}', [DealController::class, 'destroy'])->name('clients.deals.destroy');
-        
     });
 });
 
 //Save comment
 Route::post('/comments', [CommentController::class, 'store'])->middleware('auth')->name('comments.store');
 
+//Show task page
+Route::get('/clients/{client}/deals/{deal}/tasks', [TaskController::class, 'show'])->middleware('auth')->name('tasks.show');
+
 //Save task
 Route::post('/clients/{client}/deals/{deal}/tasks', [TaskController::class, 'store'])->middleware('auth')->name('task.store');
 
-
+//Reset is_done 
+Route::patch('/tasks/{task}/toggle',[TaskController::class, 'toggle'])->middleware('auth')->name('tasks.toggle');
