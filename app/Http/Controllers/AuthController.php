@@ -6,42 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\LoginUserRequest;
 
-// class AuthController extends Controller
-// {
-//     public function loginForm()
-//     {
-//         return view('auth.login');
-//     }
-
-//     public function login(Request $request)
-//     {
-//         // 1. Валидация входных данных
-//         $credentials = $request->validate([
-//             'email' => 'required|email',
-//             'password' => 'required',
-//         ]);
-
-//         // 2. Попытка авторизации
-//         if (Auth::attempt($credentials)) {
-//             // 3. Защита от фиксации сессии
-//             $request->session()->regenerate();
-
-//             // 4. Успешный вход → редирект
-//             return redirect('/dashboard');
-//         }
-
-//         // 5. Ошибка → назад с сообщением
-//         return back()->withErrors([
-//             'email' => 'Неверный email или пароль',
-//         ]);
-//     }
-// }
 
 class AuthController extends Controller
 {
     public function loginForm()
     {
-        return view('auth.login');
+        $title = 'Login page';
+        return view('auth.login', compact('title'));
     }
 
     public function login(LoginUserRequest $request)
@@ -53,7 +24,7 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             // 4. Успешный вход → редирект
-            return redirect('/dashboard');
+            return redirect('/start');
         }
 
         // 5. Ошибка → назад с сообщением
@@ -74,6 +45,6 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         //Redirect
-        return redirect('/');
+        return redirect('/login');
     }
 }

@@ -1,34 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>LaraFlow — Login</title>
-</head>
-<body>
+@extends('layouts.app')
 
-<h1>Login</h1>
+@section('title', $title)
 
-<form method="POST" action="/login">
-    @csrf
+@section('content')
 
-    <div>
-        <label>Email</label><br>
-        <input type="email" name="email" value="{{ old('email') }}" autocomplete="off">
-    </div>
 
-    <div>
-        <label>Password</label><br>
-        <input type="password" name="password" autocomplete="off">
-    </div>
+    <form method="POST" action="/login">
+        @csrf
 
-    @if ($errors->any())
-        <div style="color: red;">
-            {{ $errors->first() }}
+        <div>
+            <label>Email</label><br>
+            <input type="email" name="email" value="{{ old('email') }}" autocomplete="off">
         </div>
-    @endif
 
-    <button type="submit">Login</button>
-</form>
+        <div>
+            <label>Password</label><br>
+            <input type="password" name="password" autocomplete="off">
+        </div>
 
-</body>
-</html>
+        @if ($errors->any())
+            <div style="color: red;">
+                {{ $errors->first() }}
+            </div>
+        @endif
+
+        <button type="submit">Login</button>
+    </form>
+
+@endsection

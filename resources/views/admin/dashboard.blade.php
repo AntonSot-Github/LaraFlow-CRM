@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <title>Admin Dashboard</title>
-</head>
+@section('title', "$client->name's deal - $deal->title")
 
-<body>
-    <main>
-        
+@section('content')
         <h1>Admin Dashboard</h1>
 
         <p>Welcome, {{ auth()->user()->name }}</p>
@@ -17,9 +11,4 @@
             @csrf
             <button type="submit">Logout</button>
         </form>
-    </main>
-
-
-</body>
-
-</html>
+@endsection

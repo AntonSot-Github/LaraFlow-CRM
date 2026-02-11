@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Deal;
 use App\Models\Client;
 
+/**
+ * @method void authorize(string $ability, mixed $arguments = null)
+ */
+
 class DealController extends Controller
 {
     public function index(Client $client)
@@ -18,6 +22,7 @@ class DealController extends Controller
 
     public function show(Client $client, Deal $deal)
     {
+        $this->authorize('view', $deal);
         return view('deals.show', compact('client', 'deal'));
     }
 
