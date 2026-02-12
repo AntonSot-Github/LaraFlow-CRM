@@ -25,13 +25,13 @@ This project was created as part of practical Laravel learning and demonstrates 
 ## Screenshots
 
 ### Clients list
-![Clients](docs/clients.png)
+![Clients](docs/Clients.png)
 
 ### Client page with comments
-![Client](docs/client.png)
+![Client](docs/Client_Comments.png)
 
 ### Deal page with tasks
-![Deal](docs/deal.png)
+![Deal](docs/Deal_Tasks.png)
 
 ## Purpose of the project
 
