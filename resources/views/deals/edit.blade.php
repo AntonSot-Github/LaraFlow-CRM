@@ -5,7 +5,7 @@
 
 @section('content')
 
-    <form action="{{ route('client.deals.update', [$client, $deal]) }}" method="POST">
+    <form action="{{ route('client.deals.update', [$client, $deal]) }}" method="POST" class="d-flex flex-column justify-center align-items-center">
         @csrf
         @method('PUT')
 
@@ -19,7 +19,7 @@
             <input type="number" step="0.01" name="amount" value="{{ old('amount', $deal->amount) }}">
         </div>
 
-        <div>
+        <div class="mb-3">
             <label>Status</label><br>
             <select name="status">
                 @foreach (['new', 'in_progress', 'won', 'lost'] as $status)
@@ -36,11 +36,14 @@
             </div>
         @endif
 
-        <button type="submit">Update deal</button>
+        <button class="btn btn-primary" type="submit">Update deal</button>
 
 
     </form>
-    <a href="{{ route('clients.deals.index', $client) }}">← Back to deals</a>
-    <br>
+    <div class="w-100 d-flex flex-row justify-content-end">
+        <a href="{{ route('clients.deals.index', $client) }}">← Back to deals</a>
+    </div>
+    
+
 
 @endsection

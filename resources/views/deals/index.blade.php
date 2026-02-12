@@ -6,7 +6,7 @@
     @if ($deals->isEmpty())
         <p>No deals yet.</p>
     @else
-        <table border="1" cellpadding="5">
+        <table border="1" cellpadding="5" class="mb-3">
             <tr>
                 <th>Title</th>
                 <th>Amount</th>
@@ -27,16 +27,15 @@
                             @csrf
                             @method('DELETE')
 
-                            <button type="submit">Delete</button>
+                            <button class="btn btn-primary" type="submit">Delete</button>
                         </form>
                     </td>
                 </tr>
             @endforeach
         </table>
     @endif
-
-    <a href="{{ route('clients.deals.create', $client) }}"> + Add deal </a>
-    <br>
-    <a href="{{ route('clients.index') }}">← Back to clients</a>
-
+    <div class="d-flex flex-row justify-content-between">
+        <a href="{{ route('clients.deals.create', $client) }}"> + Add deal </a>
+        <a href="{{ route('clients.index') }}">← Back to clients</a>
+    </div>
 @endsection

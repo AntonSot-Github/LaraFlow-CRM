@@ -12,8 +12,10 @@
 </head>
 
 <body>
-    <header class="w-100 mb-5 py-4">
-        <h1 class="text-center">@yield('title', 'Title')</h1>
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-primary-subtle">
+        <div class="d-flex flex-row justify-content-center mb-3 mb-md-0 me-md-auto w-100">
+            <h1 >@yield('title', 'Title')</h1>
+        </div>        
     </header>
     <main class="d-flex flex-column container w-50">
         @include('components.alert')
